@@ -7,8 +7,8 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
-use Monolog\Level;
 
 Route::pattern('id', '[0-9]+'); //artinya ketika ada parameter {id}, maka harus berupa angka
 
@@ -76,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //route barang
-    Route::group(['prefix' =>'barang'],function(){
+    Route::group(['prefix' =>'barang', 'middleware'=>'authorize:ADM,MNG'],function(){
         Route::get('/', [BarangController::class, 'index']);          // menampilkan halaman awal barang
         Route::post('/list', [BarangController::class, 'list']);      // menampilkan data barang dalam json untuk datables
         Route::get('/create', [BarangController::class, 'create']);   // menampilkan halaman form tambah barang
