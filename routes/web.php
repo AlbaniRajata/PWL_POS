@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [WelcomeController::class, 'index']);
 
     // route user
-    Route::group(['prefix' => 'user'], function() {
+    Route::group(['prefix' => 'user', 'middleware'=>'authorize:ADM'], function() {
         Route::get('/', [UserController::class, 'index']);          // menampilkan halaman awal user
         Route::post('/list', [UserController::class, 'list']);      // menampilkan data user dalam json untuk datables
         Route::get('/create', [UserController::class, 'create']);   // menampilkan halaman form tambah user
@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //route kategori
-    Route::group(['prefix' =>'kategori'],function(){
+    Route::group(['prefix' =>'kategori','middleware'=>'authorize:ADM,MNG,STF'],function(){
         Route::get('/', [KategoriController::class, 'index']);          // menampilkan halaman awal kategori
         Route::post('/list', [KategoriController::class, 'list']);      // menampilkan data kategori dalam json untuk datables
         Route::get('/create', [KategoriController::class, 'create']);   // menampilkan halaman form tambah kategori
@@ -95,7 +95,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //route supplier
-    Route::group(['prefix' =>'supplier'],function(){
+    Route::group(['prefix' =>'supplier', 'middleware'=>'authorize:ADM,MNG,STF'],function(){
         Route::get('/', [SupplierController::class, 'index']);          // menampilkan halaman awal supplier
         Route::post('/list', [SupplierController::class, 'list']);      // menampilkan data supplier dalam json untuk datables
         Route::get('/create', [SupplierController::class, 'create']);   // menampilkan halaman form tambah supplier
