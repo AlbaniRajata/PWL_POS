@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/import', [UserController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [UserController::class, 'import_ajax']); // ajax import excel
         Route::get('/export_excel',[usercontroller::class,'export_excel']); // ajax export excel
+        Route::get('/export_pdf',[usercontroller::class,'export_pdf']); //ajax export pdf
     });
 
     //route level
@@ -62,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/import', [LevelController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // ajax import excel
         Route::get('/export_excel',[levelcontroller::class,'export_excel']); // ajax export excel
+        Route::get('/export_pdf',[levelcontroller::class,'export_pdf']); //ajax export pdf
     });
 
     //route kategori
@@ -84,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/import', [KategoriController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); // ajax import excel
         Route::get('/export_excel',[kategoricontroller::class,'export_excel']); // ajax export excel
+        Route::get('/export_pdf',[kategoricontroller::class,'export_pdf']); // ajax export pdf
     });
 
     //route barang
@@ -128,6 +131,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [SupplierController::class, 'destroy']); // menghapus data supplier
         Route::get('/import', [SupplierController::class, 'import']); // ajax form upload excel
         Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); // ajax import excel
-        Route::get('/export_excel',[suppliercontroller::class,'export_excel']);
+        Route::get('/export_excel',[suppliercontroller::class,'export_excel']); //ajax export excel
+        Route::get('/export_pdf',[suppliercontroller::class,'export_pdf']); //ajax export pdf
     });
 });

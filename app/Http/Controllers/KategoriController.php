@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables as DataTablesDataTables;
 use Yajra\DataTables\Facades\DataTables;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KategoriController extends Controller
 {
@@ -266,8 +267,8 @@ class KategoriController extends Controller
                 foreach ($data as $baris => $value) {
                     if ($baris > 1) { // baris ke 1 adalah header, maka lewati
                         $insert[] = [
-                            'kategori_kode' => $value['A'],
-                            'kategori_nama' => $value['B'],
+                            'kategori_kode' => $value['B'],
+                            'kategori_nama' => $value['C'],
                             'created_at' => now(),
                         ];
                     }
@@ -332,5 +333,15 @@ class KategoriController extends Controller
         // Simpan file dan kirim ke output
         $writer->save('php://output');
         exit;
+    }
+
+    public function export_pdf(){
+        $kategori = kategorimodel::select('kategori_kode','kategori_nama')
+        ->get();
+        $pdf = Pdf::loadView('kategori.export_pdf',['kategori'=>$kategori]);
+        $pdf->setPaper('a4','portrait'); //set ukuran kertas dan orientasi
+        $pdf->setOption("isRemoteEnabled", true); //set true jika ada gambar
+        $pdf->render();
+        return $pdf->stream('Data kategori '.date('Y-m-d H:i:s').'.pdf');
     }
 }
