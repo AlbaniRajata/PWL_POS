@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Auth\Middleware\Authorize;
@@ -146,5 +147,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/edit',[StokController::class,'edit']);
         Route::put('/{id}',[StokController::class,'update']);
         Route::delete('/{id}',[StokController::class,'destroy']);
+    });
+
+    Route::group(['prefix' =>'profile'],function(){
+        Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
+        Route::patch('/{id}', [ProfileController::class, 'update'])->name('profile.update');
     });
 });
