@@ -6,6 +6,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
@@ -133,5 +134,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/import_ajax', [SupplierController::class, 'import_ajax']); // ajax import excel
         Route::get('/export_excel',[suppliercontroller::class,'export_excel']); //ajax export excel
         Route::get('/export_pdf',[suppliercontroller::class,'export_pdf']); //ajax export pdf
+    });
+
+    //route stok
+    Route::group(['prefix' =>'stok'],function(){
+        Route::get('/',[StokController::class,'index']);
+        Route::post('/list',[StokController::class, 'list']);
+        Route::get('/create',[StokController::class,'create']);
+        Route::post('/',[StokController::class,'store']);
+        Route::get('/{id}',[StokController::class,'show']);
+        Route::get('/{id}/edit',[StokController::class,'edit']);
+        Route::put('/{id}',[StokController::class,'update']);
+        Route::delete('/{id}',[StokController::class,'destroy']);
     });
 });
