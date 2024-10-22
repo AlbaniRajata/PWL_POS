@@ -8,6 +8,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/create_ajax', [UserController::class, 'create_ajax']); // Menampilkan halaman form tambah user Ajax
         Route::post('/ajax', [UserController::class, 'store_ajax']); // Menampilkan data user baru Ajax
         Route::get('/{id}', [UserController::class, 'show']);       // menampilkan detail user
+        Route::get('/{id}/show_ajax', [UserController::class, 'show_ajax']); 
         Route::get('/{id}/edit', [UserController::class, 'edit']);  // menampilkan halaman form edit user
         Route::put('/{id}', [UserController::class, 'update']);     // menyimpan perubahan data user
         Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']); // Menampilkan halaman form edit user Ajax
@@ -160,8 +162,21 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/export_pdf', [StokController::class, 'export_pdf']); // ajax export pdf
     });
 
+    // route profil
     Route::group(['prefix' =>'profile'],function(){
         Route::get('/', [ProfileController::class, 'index'])->name('profile.index');
         Route::patch('/{id}', [ProfileController::class, 'update'])->name('profile.update');
+    });
+
+    // route penjualan
+    Route::group(['prefix' => 'transaksi'], function() {
+        Route::get('/', [TransaksiController::class, 'index'])->name('transaksi.index'); // Menampilkan halaman daftar transaksi
+        Route::post('/list', [TransaksiController::class, 'list'])->name('transaksi.list'); // Menampilkan data transaksi dalam format JSON untuk DataTables
+        Route::get('/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Menampilkan halaman form tambah transaksi
+        Route::post('/', [TransaksiController::class, 'store'])->name('transaksi.store'); // Menyimpan data transaksi baru
+        Route::get('/{id}', [TransaksiController::class, 'show'])->name('transaksi.show'); // Menampilkan detail transaksi
+        Route::get('/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Menampilkan halaman form edit transaksi
+        Route::put('/{id}', [TransaksiController::class, 'update'])->name('transaksi.update'); // Menyimpan perubahan data transaksi
+        Route::delete('/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Menghapus data transaksi
     });
 });
