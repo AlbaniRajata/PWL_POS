@@ -27,7 +27,7 @@ class StokController extends Controller
         $supplier = SupplierModel::all();
         $barang = BarangModel::all();
         $user = UserModel::all();
-        return view('stok.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu,'supplier'=>$supplier,'barang'=>$barang,'user'=>$user]);
+        return view('stok.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu,'supplier'=>$supplier,'barang'=>$barang,'user'=>$user, 'title' => 'Stok Barang']);
     }
 
     public function list(Request $request){

@@ -22,7 +22,7 @@ class SupplierController extends Controller
         ];
         $activeMenu ='supplier';
         $supplier = suppliermodel::all();
-        return view('supplier.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'supplier'=>$supplier, 'activeMenu' =>$activeMenu]);
+        return view('supplier.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'supplier'=>$supplier, 'activeMenu' =>$activeMenu, 'title' => 'Supplier Barang']);
     }
 
     public function list(Request $request){

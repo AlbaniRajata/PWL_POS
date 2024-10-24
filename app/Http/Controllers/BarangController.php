@@ -19,7 +19,7 @@ class BarangController extends Controller
         ];
         $activeMenu = 'barang';
         $kategori = kategorimodel::all();
-        return view('barang.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu, 'kategori'=>$kategori]);
+        return view('barang.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu, 'kategori'=>$kategori, 'title' => 'Daftar Barang']);
     }
     public function list(Request $request){
         $barang = barangmodel::select('barang_id','kategori_id','barang_kode','barang_nama','harga_beli','harga_jual')

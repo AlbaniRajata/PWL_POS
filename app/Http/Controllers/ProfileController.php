@@ -20,7 +20,8 @@ class ProfileController extends Controller
         $activeMenu = 'profile';
         return view('profile', compact('user'), [
             'breadcrumb' => $breadcrumb,
-            'activeMenu' => $activeMenu
+            'activeMenu' => $activeMenu,
+            'title' => 'Profil'
         ]);
     }
     public function update(Request $request, $id)

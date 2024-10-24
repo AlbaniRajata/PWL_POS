@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $activeMenu = 'user'; //set menu yang aktif
         $level = levelmodel::all(); //mengambil data level untuk filter level
-        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'level'=>$level]);
+        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'level'=>$level, 'title' => 'Data User']);
     }
 
     public function list(Request $request)

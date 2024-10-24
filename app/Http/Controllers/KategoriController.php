@@ -23,7 +23,7 @@ class KategoriController extends Controller
         ];
         $activeMenu ='kategori';
         $kategori = kategorimodel::all();
-        return view('kategori.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu,'kategori'=>$kategori]);
+        return view('kategori.index',['breadcrumb'=>$breadcrumb,'page'=>$page,'activeMenu'=>$activeMenu,'kategori'=>$kategori, 'title' => 'Kategori Barang']);
     }
 
     public function list(Request $request){
