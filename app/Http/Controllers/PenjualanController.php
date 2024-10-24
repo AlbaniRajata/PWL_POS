@@ -29,7 +29,7 @@ class PenjualanController extends Controller
 
         $activeMenu = 'penjualan'; // set menu yang sedang aktif
 
-        return view('penjualan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'user' => $user]);
+        return view('penjualan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'user' => $user, 'title' => 'Transaksi Penjualan']);
     }
 
     public function list(Request $request){
