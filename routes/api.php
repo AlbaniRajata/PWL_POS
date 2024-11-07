@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BarangController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\TransaksiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
@@ -56,3 +57,10 @@ Route::post('users', [UserController::class, 'store']);
 Route::get('users/{user}', [UserController::class, 'show']);
 Route::put('users/{user}', [UserController::class, 'update']);
 Route::delete('users/{user}', [UserController::class, 'destroy']);
+
+//Route Transaksi
+Route::get('transaksi', [TransaksiController::class, 'index']);
+Route::post('transaksi', [TransaksiController::class, 'store']);
+Route::get('transaksi/{transaksi}', [TransaksiController::class, 'show']);
+Route::put('transaksi/{transaksi}', [TransaksiController::class, 'update']);
+Route::delete('transaksi/{transaksi}', [TransaksiController::class, 'destroy']);

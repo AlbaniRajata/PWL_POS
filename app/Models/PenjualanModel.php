@@ -19,4 +19,9 @@ class PenjualanModel extends Model
     public function stok(): HasMany {
         return $this->hasMany(PenjualanDetailModel::class, 'penjualan_id', 'penjualan_id');
     }
+    public function penjualan_detail(): HasMany
+    {
+        return $this->hasMany(PenjualanDetailModel::class, 'penjualan_id', 'penjualan_id');
+    }
+
 }
